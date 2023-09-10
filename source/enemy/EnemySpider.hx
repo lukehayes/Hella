@@ -11,7 +11,16 @@ class EnemySpider extends Enemy
     {
         super(x,y);
         loadGraphic("assets/images/enemy-spider.png");
+        flipX = true;
 
         this.health = 1;
+    }
+
+
+    override public function update(elapsed:Float)
+    {
+        super.update(elapsed);
+
+        this.x -= 10 * elapsed;
     }
 }
