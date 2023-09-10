@@ -11,14 +11,14 @@ import input.Input;
 // All player functionality lives inside here.
 class Player extends FlxSprite
 {
-    static inline var SPEED : Float = 200.0;
+    static inline var SPEED : Float = 100.0;
     var xp                  : Float = 10.0;
     var yp                  : Float = 10.0;
 
-    public function new(x:Float = 100, y:Float = 100)
+    public function new(x:Float = 20, y:Float = 144/2 )
     {
         super(x,y);
-        makeGraphic(4,4, FlxColor.GREEN);
+        loadGraphic("assets/images/player.png");
         drag.x = drag.y = 1600;
     }
 
