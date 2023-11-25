@@ -7,16 +7,20 @@ import flixel.FlxSprite;
 **/
 class Bullet extends FlxSprite
 {
-    public function new(x:Float, y:Float)
+    var speed : Float;
+
+    public function new(x:Float, y:Float, speed:Float = 150)
     {
         super(x,y);
         loadGraphic('assets/images/bullet.png');
+
+        this.speed = speed;
     }
 
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
 
-        this.x += 40 * elapsed;
+        this.x += speed * elapsed;
     }
 }
