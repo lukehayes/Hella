@@ -12,10 +12,8 @@ import enemy.Tadpole;
 
 import bullet.Bullet;
 
-
 class DebugLevel extends FlxState
 {
-
     var player : Player;
 
     var enemies : FlxTypedGroup<Enemy>;
@@ -32,17 +30,16 @@ class DebugLevel extends FlxState
         this.player = new Player();
         add(this.player);
 
+        // Enemies
         this.enemies = new FlxTypedGroup<Enemy>();
-
-        for(x in 0...5)
-        {
-            var enemy = new EnemySpider(200,50 + (10 * x));
-            this.enemies.add(enemy);
-        }
-
-        this.enemies.add(new Tadpole(280, 144 / 2));
         add(this.enemies);
 
+        var e = new EnemySpider(200, 100);
+        e.health = 3;
+        this.enemies.add(e);
+
+
+        // Bullets
         this.bullets = new FlxTypedGroup<Bullet>();
         add(this.bullets);
     }
@@ -52,21 +49,17 @@ class DebugLevel extends FlxState
         super.update(elapsed);
 
         //flixel.FlxG.camera.follow(this.player);
-
-        //flixel.FlxG.collide(this.bullets, this.enemies, handleCollisions);
+        flixel.FlxG.overlap(this.bullets, this.enemies, handleCollisions);
 
         if(FlxG.keys.justPressed.SPACE)
         {
-            trace("Shoot");
-            var bullet = new Bullet(player.x + 16, player.y + 4);
-            this.bullets.add(bullet);
-            FlxG.camera.shake(0.008,0.1);
-            FlxG.camera.flash(FlxColor.fromRGB(255,255,255,50), 0.2);
+            trace("Space Pressed");
+            var b = new Bullet(this.player.x + 6,this.player.y + 3);
+            this.bullets.add(b);
         }
     }
 
     private function handleCollisions(a,b)
     {
-        trace(b.name);
     }
 }
